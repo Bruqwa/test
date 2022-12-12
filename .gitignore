@@ -1,0 +1,10 @@
+*.pyc
+__pycache__
+.venv
+*~
+/env
+/venv
+/config.json
+/logging.conf
+.idea
+.vscode

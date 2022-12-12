@@ -1,0 +1,15 @@
+version: "2.2"
+services:
+  rest_api:
+    build:
+      context: .
+      dockerfile: docker/base/Dockerfile
+    command: python3 excel_onfly.py
+    ports:
+      - "8010:8010"
+    volumes:
+      - .:/code
+
+    environment:
+      - SRVC_CONFIG=etc/local.json
+      - SRVC_LOG=etc/logging.conf
