@@ -1,8 +1,9 @@
-from fastapi import APIRouter, Response
-from openpyxl import Workbook
 from datetime import datetime
 from random import randint, choice, sample
+import string
 from io import BytesIO
+from openpyxl import Workbook
+from fastapi import APIRouter, Response
 
 
 router = APIRouter()
@@ -11,12 +12,8 @@ router = APIRouter()
 async def table()->Response:
     today = datetime.now()
 
-    upper_letters = 'ABCDEFGHIJKLOPQRSTUVWXYZ'
-    lower_letters = 'abcdefghijklopqrstuvwxyz'
-    numbers = '0123456789'
-    letters = upper_letters + lower_letters
-    random_chars_lst = [choice(letters) for i in range(randint(1,6))] + [choice(numbers) for j in range(randint(1,6))]
-    random_str = ''.join(sample(random_chars_lst, len(random_chars_lst)))
+    random_chars = [choice(string.ascii_letters) for i in range(randint(1, 6))] + [choice(string.digits) for i in range(randint(1, 6))]
+    random_str = ''.join(sample(random_chars, len(random_chars)))
 
     wb = Workbook()
     ws = wb.active
